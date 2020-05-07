@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {BrowserRouter} from 'react-router-dom';
 
-function App() {
-  const [message, setMessage] = useState('');
+import Routes from "../routes";
+import Loader from "./loader";
 
-  useEffect(() => {
-      console.log('Enter effect')
-      fetch('/welcome')
-          .then(res => res.json())
-          .then(data => {
-          console.log(data);
-          setMessage(data.message);
-      });
-  }, []);
-
-  return (
-    <div className="App">
-        <p>{message} to my personal website</p>
-    </div>
-  );
+const App = () => {
+    return (
+        <div className={'app'}>
+            <Loader />
+            <div className={'app__container'}>
+                <h3>Welcome to my personal website</h3>
+                <BrowserRouter>
+                    <Routes />
+                </BrowserRouter>
+            </div>
+        </div>
+    )
 }
 
 export default App;
